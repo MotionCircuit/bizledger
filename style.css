@@ -470,3 +470,36 @@ h1,h2,h3{color:var(--head)}
 .code{padding:8px 13px;margin-bottom:12px;border-radius:12px}.code b{font-size:15px}.code small{font-size:11px}
 .stp li{padding:4px 0;font-size:13.5px;gap:10px}.stp b{width:22px;height:22px;font-size:12px}
 @media(max-width:820px){.ogrid{max-width:420px}.tick b{font-size:40px}}
+
+/* v13 fix: stop mobile page widening (off-screen drawer) so the bottom "Get early access" bar fits */
+html{overflow-x:hidden}
+body{overflow-x:clip}
+@media(max-width:820px){.upfab{bottom:148px!important}}
+
+/* ===== v13 two-column: comparison (left) + flipping free/referral cards (right) ===== */
+.duo{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:40px;align-items:center}
+.duo-l .eyebrow,.duo-l h2,.duo-l .sub{text-align:left}
+.duo-l h2{margin-bottom:8px}.duo-l .sub{margin-bottom:22px}
+.duo-r{text-align:center;min-width:0}
+.duo-t{font-size:18px;margin:2px 0 16px}
+.duo-r.in .ul{background-size:100% .14em}
+.flip{display:grid;perspective:2400px;padding-top:6px}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;text-align:left;display:flex}
+.face .ocard{width:100%;margin:0}
+.face.f1{transform:rotateY(0deg)}
+.face.f2{transform:rotateY(180deg)}
+.duo-r.in .face.f1{animation:flipA 10s ease-in-out infinite}
+.duo-r.in .face.f2{animation:flipB 10s ease-in-out infinite}
+@keyframes flipA{0%,42%{transform:rotateY(0deg)}50%,92%{transform:rotateY(-180deg)}100%{transform:rotateY(-360deg)}}
+@keyframes flipB{0%,42%{transform:rotateY(180deg)}50%,92%{transform:rotateY(0deg)}100%{transform:rotateY(-180deg)}}
+.flip:hover .face,.flip:hover~.dots i{animation-play-state:paused}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.dots i{display:block;width:8px;height:8px;border-radius:99px;background:#C9D0DB;transition:all .3s}
+.dots i:first-child{width:24px;background:var(--brand)}
+.duo-r.in .dots i:first-child{animation:dA 10s infinite}
+.duo-r.in .dots i:last-child{animation:dB 10s infinite}
+@keyframes dA{0%,42%{width:24px;background:#6D28D9}48%,92%{width:8px;background:#C9D0DB}98%,100%{width:24px;background:#6D28D9}}
+@keyframes dB{0%,42%{width:8px;background:#C9D0DB}48%,92%{width:24px;background:#6D28D9}98%,100%{width:8px;background:#C9D0DB}}
+[data-theme=dark] .dots i{background:#3A465B}
+@media(max-width:900px){.duo{grid-template-columns:1fr;gap:34px}.duo-r{max-width:440px;margin:0 auto;width:100%}}
+@media(prefers-reduced-motion:reduce){.flip{display:block}.face{display:block;margin-bottom:16px}.face.f1,.face.f2{transform:none!important;animation:none!important}.dots{display:none}}
