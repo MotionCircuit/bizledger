@@ -24,6 +24,7 @@
   <input type="checkbox" id="mn" class="mn-t" aria-label="Menu">
   <label for="mn" class="mn-b" aria-hidden="true"><span></span></label>
   <nav class="nav"><a href="index.html">Home</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="faq.html">FAQ</a><a href="about.html">About</a><a href="contact.html" class=on>Contact</a></nav>
+  <label for="mn" class="ov" aria-hidden="true"></label>
 </div></header>
 <main class="doc"><div class="wrap narrow">
 <h1>Contact us</h1>
@@ -34,6 +35,21 @@
   <div class="card"><h3>Business</h3><p>MotionCircuit (BizLedger)<br>Proprietor: Nitin</p></div>
   <div class="card"><h3>Address</h3><p>Noorwala, Panipat, Haryana 132103<br>India</p></div>
 </div>
+<h2>Send us a message</h2>
+<form class="cform" id="cf" action="https://formspree.io/f/xqpporwe" method="POST">
+  <div class="row2">
+    <label>Name<input name="name" type="text" required autocomplete="name"></label>
+    <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel"></label>
+  </div>
+  <label>Email<input name="email" type="email" required autocomplete="email"></label>
+  <label>What is it about?<select name="topic"><option>General question</option><option>Plans &amp; pricing</option><option>Payment / refund</option><option>Account help</option><option>Other</option></select></label>
+  <label>Message<textarea name="message" rows="5" required></textarea></label>
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+  <input type="hidden" name="_subject" value="New message from BizLedger website">
+  <button class="btn" type="submit">Send message</button>
+  <p class="fmsg" id="fm" role="status" aria-live="polite"></p>
+</form>
+<script>(function(){var f=document.getElementById("cf"),m=document.getElementById("fm");if(!f||!window.fetch)return;f.addEventListener("submit",function(e){e.preventDefault();var b=f.querySelector("button");b.disabled=true;m.className="fmsg";m.textContent=tr("Sending...");fetch(f.action,{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}}).then(function(r){if(r.ok){f.reset();m.className="fmsg ok";m.textContent=tr("Thank you! We have received your message and will reply within 1-2 working days.");}else{throw 0}}).catch(function(){m.className="fmsg err";m.textContent=tr("Could not send your message. Please contact us by email or WhatsApp.")}).then(function(){b.disabled=false})})})();</script>
 <h2>For refund requests</h2>
 <p>Please email us with your sign-in email, payment ID and the reason. See the <a href="refund.html">Refund &amp; Cancellation policy</a> for details.</p>
 </div></main>
@@ -56,5 +72,7 @@
     <p>&copy; 2026 MotionCircuit. All rights reserved.</p>
   </div>
 </div></footer>
+<script src="site.js" defer></script>
+<script src="lang.js" defer></script>
 </body>
 </html>
