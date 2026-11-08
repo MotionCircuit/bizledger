@@ -201,3 +201,9 @@ section[id]{scroll-margin-top:72px}
 .nav{order:2;margin-left:auto}.mn-b{order:4}
 .lbanner{display:none;background:#fff4e8;border:1px solid #f0d9bd;border-radius:12px;padding:10px 14px;margin:0 0 18px;font-size:14px;color:#6b4a1a}
 @media(max-width:820px){.lt{margin-left:auto}.mn-b{margin-left:8px}.nav{margin-left:0}}
+
+/* v8: balance features grid */
+.bento .bc:last-child{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;column-gap:18px;align-items:center}
+.bento .bc:last-child .i{grid-row:span 2}
+.bento .bc:last-child h3{margin:0 0 2px}
+@media(max-width:820px){.bento .bc:last-child{display:block}}
