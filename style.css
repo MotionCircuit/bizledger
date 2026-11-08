@@ -233,3 +233,4 @@ h1,h2,h3{letter-spacing:-.02em}
 .cmp th:last-child,.cmp td:last-child{background:var(--soft);color:var(--brand);font-weight:700}
 .cmp td:first-child{font-weight:600}
 @media(max-width:820px){.split{grid-template-columns:1fr;gap:28px}}
+.hero2 .btn.w{background:#fff;color:#6b0f2c;opacity:1}
