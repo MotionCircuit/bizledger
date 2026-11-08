@@ -573,3 +573,27 @@ body{overflow-x:clip}
 .duo-l .cmp tr:hover td:nth-child(2)::before{transform:rotate(90deg)}
 .duo-l .cmp th:first-child,.duo-l .cmp td:first-child{text-align:left}
 @media(max-width:560px){.duo-l .cmp td:nth-child(2),.duo-l .cmp td:nth-child(3){padding-left:8px;padding-right:8px}.duo-l .cmp td:nth-child(2)::before,.duo-l .cmp td:nth-child(3)::before{margin-right:6px}}
+
+/* ===== FORCE: visible border + equal height (overrides any later theme rules) ===== */
+.duo{align-items:stretch!important}
+.duo-l,.duo-r{display:flex!important;flex-direction:column!important;align-self:stretch!important}
+.duo-l .tw{
+  flex:1 1 auto!important;display:flex!important;
+  border:2px solid #2F5FD8!important;
+  border-radius:24px!important;
+  box-shadow:0 0 0 5px rgba(47,95,216,.12),0 14px 40px rgba(30,45,68,.10)!important;
+  overflow:hidden!important;background:#fff!important;
+}
+.duo-l .tw .cmp{width:100%!important;height:100%!important}
+.duo-r .flip{flex:1 1 auto!important;display:grid!important}
+.duo-r .face{height:100%!important}
+.duo-r .face .ocard{height:100%!important}
+[data-theme=dark] .duo-l .tw{border-color:#5B86F5!important;background:#16202F!important;box-shadow:0 0 0 5px rgba(91,134,245,.15),0 14px 40px rgba(0,0,0,.35)!important}
+
+/* ===== Captions: heading centered over the table, equal cap height in both columns ===== */
+.duo-l .cap,.duo-r .cap{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;margin-bottom:18px}
+@media(min-width:901px){.duo-l .cap,.duo-r .cap{min-height:132px}}
+.duo-l .cap h2{text-align:center!important;margin:0 0 6px}
+.duo-l .cap .sub{text-align:center!important;margin:0!important}
+.duo-l .cap .eyebrow,.duo-r .cap .eyebrow{text-align:center!important}
+.duo-r .cap .duo-t{margin:4px 0 0;text-align:center}
