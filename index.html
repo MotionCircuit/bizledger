@@ -4,100 +4,111 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BizLedger – Digital Khata App for Small Shops</title>
-<meta name="description" content="BizLedger is a digital khata (udhar ledger) app for small shops in India. Track udhar and jama, send reminders, create bills and see reports.">
-<style>
-  :root{--brand:#8A1538;--brand-d:#6b0f2c;--ink:#1d1d1f;--muted:#5f6368;--bg:#fff;--soft:#fbf3f5;--line:#eadfe2}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  a{color:var(--brand)}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-  header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:5}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-weight:800;font-size:20px;color:var(--brand);text-decoration:none}
-  nav a{margin-left:18px;text-decoration:none;color:var(--ink);font-size:15px}
-  nav a:hover{color:var(--brand)}
-  .hero{background:linear-gradient(180deg,var(--soft),#fff);padding:64px 0 48px;text-align:center}
-  .hero h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:0 0 14px}
-  .hero p{max-width:640px;margin:0 auto 24px;color:var(--muted);font-size:18px}
-  .btn{display:inline-block;background:var(--brand);color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:600}
-  .btn:hover{background:var(--brand-d)}
-  .btn.ghost{background:#fff;color:var(--brand);border:1.5px solid var(--brand);margin-left:8px}
-  .badge{display:block;margin-top:16px;font-size:13px;color:var(--muted)}
-  section{padding:52px 0}
-  h2{font-size:28px;margin:0 0 8px;text-align:center}
-  .sub{text-align:center;color:var(--muted);margin:0 0 32px}
-  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .card{border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff}
-  .card h3{margin:0 0 6px;font-size:18px}
-  .card p{margin:0;color:var(--muted);font-size:15px}
-  .soft{background:var(--soft)}
-  .plans{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));max-width:720px;margin:0 auto}
-  .plan{border:1.5px solid var(--line);border-radius:16px;padding:24px;background:#fff;text-align:center}
-  .plan.pop{border-color:var(--brand)}
-  .plan h3{margin:0;font-size:20px}
-  .price{font-size:36px;font-weight:800;margin:10px 0 0}
-  .price small{font-size:15px;font-weight:500;color:var(--muted)}
-  .yr{color:var(--muted);font-size:14px;margin-bottom:12px}
-  .plan ul{list-style:none;padding:0;margin:14px 0 0;text-align:left;color:var(--muted);font-size:15px}
-  .plan li{padding:4px 0}
-  .plan li::before{content:"✓ ";color:var(--brand);font-weight:700}
-  .note{text-align:center;color:var(--muted);font-size:14px;margin-top:18px}
-  footer{border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(--muted)}
-  footer .links a{margin-right:16px}
-  @media(max-width:560px){nav a{margin-left:10px;font-size:14px}.btn.ghost{margin:10px 0 0}}
-</style>
+<meta name="description" content="BizLedger is a digital khata (udhar ledger) app for small shops in India. Record udhar and jama, send reminders, make bills and see reports.">
+<meta name="theme-color" content="#8A1538">
+<meta property="og:title" content="BizLedger – Digital Khata App for Small Shops">
+<meta property="og:description" content="BizLedger is a digital khata (udhar ledger) app for small shops in India. Record udhar and jama, send reminders, make bills and see reports.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BizLedger">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><div class="wrap">
-  <a class="logo" href="index.html">BizLedger</a>
-  <nav><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="contact.html">Contact</a></nav>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#8A1538"/><path d="M9 8h9.5a4.5 4.5 0 0 1 2.2 8.4A4.8 4.8 0 0 1 19 25H9z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 16.4h9.4" stroke="#fff" stroke-width="2.4"/></svg><span>BizLedger</span></a>
+  <input type="checkbox" id="mn" class="mn-t" aria-label="Menu">
+  <label for="mn" class="mn-b" aria-hidden="true"><span></span></label>
+  <nav class="nav"><a href="index.html" class=on>Home</a><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="faq.html">FAQ</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
 </div></header>
-
-<div class="hero"><div class="wrap">
-  <h1>Your shop's udhar khata,<br>now on your phone.</h1>
-  <p>BizLedger helps small shop owners record udhar and jama, send payment reminders, make bills and see reports. Simple, fast, and safe.</p>
-  <a class="btn" href="#pricing">See plans</a><a class="btn ghost" href="contact.html">Contact us</a>
-  <div class="badge">Android app · Coming soon</div>
-</div></div>
+<main>
+<section class="hero"><div class="wrap hgrid">
+  <div>
+    <span class="pill">Android app &middot; Coming soon</span>
+    <h1>Your shop's udhar khata,<br>now on your phone.</h1>
+    <p class="lead">BizLedger helps small shop owners record udhar and jama, send payment reminders, make bills and see reports. Simple, fast and safe &mdash; no more paper khata.</p>
+    <div class="cta"><a class="btn" href="#pricing">See plans</a><a class="btn ghost" href="contact.html">Contact us</a></div>
+    <ul class="trust">
+      <li>Sign in with Google</li><li>Data stored in India</li><li>Payments by Razorpay</li>
+    </ul>
+  </div>
+  <div class="phone" aria-label="Sample app screen">
+    <div class="ph-top"><b>Aaj ka hisaab</b><small>Sample</small></div>
+    <div class="ph-sum"><div><small>Udhar</small><b>&#8377;4,250</b></div><div><small>Jama</small><b class="g">&#8377;3,100</b></div><div><small>Kul baaki</small><b class="r">&#8377;12,800</b></div></div>
+    <div class="ph-row"><span class="av">R</span><div><b>Ramesh Kumar</b><small>Last entry: today</small></div><em class="r">&#8377;1,200</em></div>
+    <div class="ph-row"><span class="av">S</span><div><b>Sunita Devi</b><small>Last entry: yesterday</small></div><em class="r">&#8377;850</em></div>
+    <div class="ph-row"><span class="av">M</span><div><b>Mohan General Store</b><small>Paid &#8377;2,000</small></div><em class="g">&#8377;0</em></div>
+    <div class="ph-btn">Send reminder</div>
+  </div>
+</div></section>
 
 <section id="features"><div class="wrap">
   <h2>Everything a kirana shop needs</h2>
   <p class="sub">Replace the paper khata with one simple app.</p>
-  <div class="grid">
-    <div class="card"><h3>Udhar &amp; Jama</h3><p>Record every credit and payment against each customer. Balance is always up to date.</p></div>
-    <div class="card"><h3>Reminders</h3><p>Send payment reminders to customers with the pending amount and your UPI details.</p></div>
-    <div class="card"><h3>Share via QR</h3><p>Customers can see their own khata in read-only mode by scanning a QR code.</p></div>
-    <div class="card"><h3>Bills &amp; Products</h3><p>Create bills, manage products and keep track of your stock.</p></div>
-    <div class="card"><h3>Expenses &amp; Reports</h3><p>Note down shop expenses and view simple daily and monthly reports.</p></div>
-    <div class="card"><h3>Safe &amp; Private</h3><p>Sign in with Google, protect with a PIN. You can delete your account anytime.</p></div>
+  <div class="grid3">
+    <div class="card"><div class="ic">&#128210;</div><h3>Udhar &amp; Jama</h3><p>Record every credit and payment for each customer. The balance is always up to date.</p></div>
+    <div class="card"><div class="ic">&#128276;</div><h3>Payment reminders</h3><p>Send reminders to customers by WhatsApp with the pending amount and your UPI QR.</p></div>
+    <div class="card"><div class="ic">&#128241;</div><h3>Khata for customers</h3><p>Customers can see their own khata in read-only mode and tell you when they have paid.</p></div>
+    <div class="card"><div class="ic">&#129534;</div><h3>Bills &amp; inventory</h3><p>Make bills, manage products and keep track of your stock in the same app.</p></div>
+    <div class="card"><div class="ic">&#128200;</div><h3>Expenses &amp; reports</h3><p>Note shop expenses and see simple daily and monthly reports of your business.</p></div>
+    <div class="card"><div class="ic">&#128274;</div><h3>Safe &amp; private</h3><p>Google sign-in and an app-lock PIN. You can delete your account any time.</p></div>
   </div>
 </div></section>
 
-<section id="pricing" class="soft"><div class="wrap">
+<section class="soft"><div class="wrap">
+  <h2>Start in 3 simple steps</h2>
+  <p class="sub">Takes only a few minutes to set up your shop.</p>
+  <div class="grid3 steps">
+    <div class="step"><span class="n">1</span><h3>Sign in</h3><p>Open BizLedger and sign in with your Google account.</p></div>
+    <div class="step"><span class="n">2</span><h3>Add your shop &amp; customers</h3><p>Enter your shop details and add the customers who take udhar.</p></div>
+    <div class="step"><span class="n">3</span><h3>Record &amp; remind</h3><p>Write udhar and jama entries and send reminders when payment is due.</p></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
   <h2>Simple pricing</h2>
-  <p class="sub">Pay monthly or yearly. Cancel anytime.</p>
+  <p class="sub">Pay monthly or pay for a year and get one month free. No auto-renewal.</p>
   <div class="plans">
     <div class="plan">
       <h3>Basic</h3>
-      <div class="price">₹299 <small>/ month</small></div>
-      <div class="yr">or ₹3,289 / year</div>
-      <ul><li>Udhar &amp; jama ledger</li><li>Customer reminders</li><li>QR khata sharing</li></ul>
+      <div class="price">&#8377;299 <small>/ month</small></div>
+      <div class="yr">or &#8377;3,289 / year (1 month free)</div>
+      <ul><li>Udhar khata, bills, inventory and reports</li><li>UPI QR and WhatsApp reminder to customers</li><li>Small ad shown in the customer app</li></ul>
     </div>
     <div class="plan pop">
+      <span class="best">Best</span>
       <h3>Premium</h3>
-      <div class="price">₹499 <small>/ month</small></div>
-      <div class="yr">or ₹5,489 / year</div>
-      <ul><li>Everything in Basic</li><li>Bills, products &amp; expenses</li><li>Reports &amp; staff access</li></ul>
+      <div class="price">&#8377;499 <small>/ month</small></div>
+      <div class="yr">or &#8377;5,489 / year (1 month free)</div>
+      <ul><li>Everything in Basic</li><li>No ads shown to your customers</li><li>Staff (munim) accounts</li><li>Automatic due-date push reminders to customers</li></ul>
     </div>
   </div>
-  <p class="note">Plans are paid securely through Razorpay (UPI, cards, netbanking). Prices in INR, taxes as applicable. See our <a href="refund.html">Refund &amp; Cancellation policy</a>.</p>
+  <p class="note">Plans are paid securely through Razorpay (UPI, cards, netbanking). Prices are in INR; taxes as applicable. See our <a href="refund.html">Refund &amp; Cancellation policy</a>.</p>
 </div></section>
 
-<footer><div class="wrap">
-  <p><b>BizLedger</b> is operated by <b>MotionCircuit</b> (Proprietor: Nitin), Noorwala, Panipat, Haryana 132103, India.<br>
-  Phone / WhatsApp: <a href="tel:+919053155257">+91 90531 55257</a> · Email: <a href="mailto:contact.whonithin@gmail.com">contact.whonithin@gmail.com</a></p>
-  <p class="links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms and Conditions</a><a href="refund.html">Refund &amp; Cancellation</a><a href="contact.html">Contact Us</a><a href="delete-account.html">Delete your account</a></p>
-  <p>© 2026 MotionCircuit (Proprietor: Nitin). All rights reserved.</p>
+<section class="soft"><div class="wrap narrow">
+  <h2>Questions?</h2>
+  <p class="sub">Read the <a href="faq.html">FAQ</a> or write to us &mdash; we reply within 1&ndash;2 working days.</p>
+  <p class="center"><a class="btn" href="contact.html">Contact us</a></p>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#8A1538"/><path d="M9 8h9.5a4.5 4.5 0 0 1 2.2 8.4A4.8 4.8 0 0 1 19 25H9z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 16.4h9.4" stroke="#fff" stroke-width="2.4"/></svg><span>BizLedger</span></a>
+      <p class="fabout">Digital khata (udhar ledger) app for small shops in India.</p>
+    </div>
+    <div><h4>Product</h4>
+      <a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="faq.html">FAQ</a></div>
+    <div><h4>Company</h4>
+      <a href="about.html">About</a><a href="contact.html">Contact us</a><a href="delete-account.html">Delete your account</a></div>
+    <div><h4>Legal</h4>
+      <a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms and Conditions</a><a href="refund.html">Refund &amp; Cancellation</a></div>
+  </div>
+  <div class="fbase">
+    <p><b>BizLedger</b> is operated by <b>MotionCircuit (Proprietor: Nitin)</b>, Noorwala, Panipat, Haryana 132103, India<br>
+    Phone / WhatsApp: <a href="tel:+919053155257">+91 90531 55257</a> &middot; Email: <a href="mailto:contact.whonithin@gmail.com">contact.whonithin@gmail.com</a></p>
+    <p>&copy; 2026 MotionCircuit. All rights reserved.</p>
+  </div>
 </div></footer>
 </body>
 </html>
