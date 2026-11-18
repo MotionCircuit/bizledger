@@ -25,18 +25,18 @@ window.addEventListener("resize",function(){if(window.innerWidth>820)mn.checked=
 }
 })();
 
+/* dark mode toggle (remembers the choice; follows the phone setting until chosen) */
 (function(){var d=document,h=d.documentElement,bar=d.querySelector(".bar");
-try{var t=localStorage.getItem("bl_theme");if(t)h.setAttribute("data-theme",t)}catch(e){}
+try{var t=localStorage.getItem("bl_theme");if(t)h.setAttribute("data-theme",t);else if(matchMedia("(prefers-color-scheme:dark)").matches)h.setAttribute("data-theme","dark")}catch(e){}
 var b=d.createElement("button");b.type="button";b.className="thm";b.setAttribute("aria-label","Toggle dark mode");
-function ic(){b.textContent=h.getAttribute("data-theme")==="dark"?"\u2600":"\u263E"}ic();
+function ic(){b.textContent=h.getAttribute("data-theme")==="dark"?"☀":"☾"}ic();
 b.onclick=function(){var n=h.getAttribute("data-theme")==="dark"?"light":"dark";h.setAttribute("data-theme",n);try{localStorage.setItem("bl_theme",n)}catch(e){}ic()};
 if(bar)bar.insertBefore(b,d.querySelector(".mn-b"));
-var s=d.querySelectorAll(".slides img");if(s.length>1&&!matchMedia("(prefers-reduced-motion:reduce)").matches){var i=0;setInterval(function(){s[i].classList.remove("on");i=(i+1)%s.length;s[i].classList.add("on")},3200)}
-d.querySelectorAll(".bill button").forEach(function(x){x.onclick=function(){var k=x.getAttribute("data-b");d.querySelectorAll(".bill button").forEach(function(y){y.classList.toggle("on",y===x)});d.querySelectorAll(".price[data-m],.yr[data-m]").forEach(function(e){e.innerHTML=e.getAttribute("data-"+k)})}});
 if(!/contact/.test(location.pathname)){var m=d.createElement("a");m.className="mbar";m.href="contact.html";m.textContent="Get early access";d.body.appendChild(m);
 addEventListener("scroll",function(){m.classList.toggle("show",(window.scrollY||0)>420)},{passive:true})}
 })();
 
+/* page transition */
 (function(){var b=document.body;addEventListener("pageshow",function(){b.classList.remove("leaving")});
 if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");
@@ -44,11 +44,23 @@ if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button||a.target=
 var u=new URL(a.href,location.href);if(u.origin!==location.origin||u.pathname===location.pathname||!/\.html$|\/$/.test(u.pathname))return;
 e.preventDefault();b.classList.add("leaving");setTimeout(function(){location.href=a.href},220)})})();
 
-/* free-offer count-down: 299 -> 0, repeats each time the card flips back (10s cycle) */
-(function(){var c=document.querySelector(".cnt");if(!c)return;
-var from=+c.getAttribute("data-from"),to=+c.getAttribute("data-to"),box=c.closest(".duo-r")||c.closest(".ocard");
-if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window)){return}
-function run(){var t0=null,dur=1400;c.textContent="\u20B9"+from;setTimeout(function(){requestAnimationFrame(function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
-c.textContent="\u20B9"+Math.round(from+(to-from)*e);if(p<1)requestAnimationFrame(step)})},300)}
-c.textContent="\u20B9"+from;
-var o=new IntersectionObserver(function(l){if(!l[0].isIntersecting)return;o.disconnect();run();setInterval(run,10000)},{threshold:.12});o.observe(box)})();
+/* pricing: tier x monthly/yearly. Plan ladder = app's recommended plans (Basic / Standard / Premium per tier). Yearly = 10 months' price. */
+(function(){var d=document,pl=d.getElementById("plans");if(!pl)return;
+var P={starter:[99,149,199],growth:[199,349,499],pro:[399,649,999]};
+var N={starter:"Starter: small solo and daily-delivery work. Live today: Milk / Dairy, Newspaper, Tiffin / Mess, Water can, Other.",
+growth:"Growth: shops and classes. Live today: Grocery / General Store and Gas cylinder.",
+pro:"Pro: GST and stock-heavy businesses. Live today: Medical / Pharmacy and Shuttering store."};
+var t="growth",b="m",fmt=function(n){return "₹"+n.toLocaleString("en-IN")};
+function draw(){d.getElementById("tnote").textContent=N[t];
+pl.querySelectorAll(".plan[data-i]").forEach(function(c){var m=P[t][+c.getAttribute("data-i")],y=m*10;
+c.querySelector(".price").innerHTML=b==="m"?fmt(m)+" <small>/ month</small>":fmt(y)+" <small>/ year</small>";
+c.querySelector(".yr").textContent=b==="m"?"or "+fmt(y)+" / year (2 months free)":"About "+fmt(Math.round(y/12))+" / month, 2 months free"})}
+d.querySelectorAll("#tier button").forEach(function(x){x.onclick=function(){t=x.getAttribute("data-t");d.querySelectorAll("#tier button").forEach(function(y){y.classList.toggle("on",y===x)});draw()}});
+d.querySelectorAll("#bill button").forEach(function(x){x.onclick=function(){b=x.getAttribute("data-b");d.querySelectorAll("#bill button").forEach(function(y){y.classList.toggle("on",y===x)});draw()}});
+draw()})();
+
+/* free plan <-> referral card flip (every 7 s, or click the dots) */
+(function(){var f=document.querySelector(".flip");if(!f)return;var dots=document.querySelectorAll(".dots i"),alt=false,tm;
+function set(a){alt=a;f.classList.toggle("alt",a);dots.forEach(function(x,i){x.classList.toggle("on",(i===1)===a)})}
+function auto(){clearInterval(tm);if(!matchMedia("(prefers-reduced-motion:reduce)").matches)tm=setInterval(function(){set(!alt)},7000)}
+dots.forEach(function(x,i){x.onclick=function(){set(i===1);auto()}});auto()})();
