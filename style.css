@@ -298,3 +298,88 @@ details.more .tw{border:0;margin-bottom:12px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 
 .scr.sm{height:480px}
+
+/* =====================================================================
+   PREMIUM LAYER (v20): hover motion, branded Google Play badge, polish
+   ===================================================================== */
+::selection{background:var(--red);color:#fff}
+html{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+body{text-rendering:optimizeLegibility}
+h1{letter-spacing:-.035em}h2{letter-spacing:-.03em}
+
+/* header: soft depth */
+.top{background:linear-gradient(180deg,color-mix(in srgb,var(--hdr) 92%,#fff),var(--hdr))}
+.brand .mark{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.brand:hover .mark{transform:rotate(-6deg) scale(1.08)}
+.nav a{transition:background .2s,color .2s,transform .2s}
+.nav a:hover{transform:translateY(-1px)}
+.thm{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .2s}
+.thm:hover{transform:rotate(25deg) scale(1.08);background:rgba(255,255,255,.28)}
+
+/* buttons: lift, sheen sweep, ink turns brand red on hover */
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .25s,border-color .25s,color .25s}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.38) 50%,transparent 70%);transform:translateX(-130%);transition:transform 0s .7s,opacity .2s}
+.btn:hover::after{opacity:1;transform:translateX(130%);transition:transform .7s,opacity .1s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,22,27,.22)}
+.btn:active{transform:translateY(0) scale(.97);box-shadow:0 4px 10px rgba(20,22,27,.2);transition-duration:.08s}
+.btn:not(.ghost):not(.ghost2):not(.red):not(.w):not(.nav-cta):hover{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 14px 32px rgba(235,25,10,.38)}
+.btn.red:hover{background:var(--red-d);border-color:var(--red-d);box-shadow:0 14px 32px rgba(235,25,10,.4)}
+.btn.ghost:hover,.btn.ghost2:hover{background:var(--soft);border-color:var(--ink)}
+.band .btn.ghost2:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.btn.w:hover{background:#fff;box-shadow:0 14px 32px rgba(255,255,255,.22)}
+.nav-cta:hover{background:var(--red)!important;color:#fff!important}
+.hero2 .btn{padding:14px 24px}
+.hero2 .cta{gap:12px}
+
+/* branded Google Play badge (replace with Google's official badge file when the app is live) */
+.gplay{position:relative;display:inline-flex;align-items:center;gap:11px;margin-top:6px;background:#000;color:#fff;border:1.5px solid #A6A6A6;border-radius:12px;padding:8px 20px 8px 14px;min-height:56px;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .2s}
+.gplay:hover{text-decoration:none;transform:translateY(-4px);border-color:#fff;box-shadow:0 18px 36px rgba(0,0,0,.34)}
+.gplay:active{transform:translateY(-1px) scale(.98)}
+.gplay .gl{flex:none;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.gplay:hover .gl{transform:scale(1.14) rotate(-6deg)}
+.gplay .gt{display:flex;flex-direction:column;line-height:1;text-align:left}
+.gplay .gt small{font-size:.62rem;font-weight:600;letter-spacing:.09em;opacity:.92;margin-bottom:3px}
+.gplay .gt b{font-size:1.42rem;font-weight:600;letter-spacing:-.01em;font-family:"Google Sans","Product Sans",Inter,system-ui,sans-serif}
+.gplay .soon{position:absolute;top:-10px;right:-8px;font-style:normal;font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 9px;border-radius:99px;box-shadow:0 4px 10px rgba(235,25,10,.4)}
+:root[data-theme=dark] .gplay{border-color:#8A8A8A;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+
+/* hero polish */
+.hero2::before{content:"";position:absolute;inset:0;background-image:radial-gradient(color-mix(in srgb,var(--ink) 16%,transparent) 1px,transparent 1.2px);background-size:24px 24px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 70% 35%,#000,transparent 75%);mask-image:radial-gradient(ellipse 60% 70% at 70% 35%,#000,transparent 75%);pointer-events:none;opacity:.55}
+.hero2 h1{font-size:clamp(2.2rem,4.5vw,3.2rem);line-height:1.1}
+.hero2 .hl{background:linear-gradient(135deg,#FF4A38,#EB190A 55%,#C4140A);box-shadow:0 10px 28px rgba(235,25,10,.35)}
+.pill2{border:1px solid color-mix(in srgb,var(--red) 22%,transparent);backdrop-filter:blur(6px)}
+.phone{animation:phf 7s ease-in-out infinite;transition:box-shadow .4s}
+.phone:hover{box-shadow:0 40px 90px rgba(235,25,10,.28),var(--sh2)}
+@keyframes phf{50%{transform:translateY(-10px)}}
+.shots .phone{animation:none}
+
+/* cards: lift + glow + icon wiggle */
+.bc,.plan,.bz,.steps .step,.sgrid div,.faq details,details.more,.chips span{transition:opacity .6s,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .3s,background .3s}
+.rv.in:hover{transition-delay:0s}
+.bc:hover,.plan:hover,.steps .step:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--red) 38%,var(--line));box-shadow:0 22px 50px rgba(20,22,27,.14),0 0 0 4px color-mix(in srgb,var(--red) 7%,transparent)}
+:root[data-theme=dark] .bc:hover,:root[data-theme=dark] .plan:hover,:root[data-theme=dark] .steps .step:hover{box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 0 4px color-mix(in srgb,var(--red) 18%,transparent)}
+.bz:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--red) 45%,var(--line));box-shadow:var(--sh2)}
+.chips span:hover{transform:translateY(-2px);border-color:var(--red);color:var(--acc)}
+.ico{transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
+.bc:hover .ico,.bz:hover .ico{transform:scale(1.12) rotate(-6deg);background:var(--red-s)}
+.sgrid div:hover{background:var(--soft)}
+.faq details:hover{border-color:color-mix(in srgb,var(--red) 40%,var(--line))}
+.faq details[open]{box-shadow:var(--sh);border-color:color-mix(in srgb,var(--red) 40%,var(--line))}
+.plan.pop{box-shadow:0 0 0 4px color-mix(in srgb,var(--red) 9%,transparent),0 26px 60px rgba(235,25,10,.2)}
+.plan.pop:hover{box-shadow:0 0 0 5px color-mix(in srgb,var(--red) 14%,transparent),0 32px 70px rgba(235,25,10,.3)}
+
+/* footer + floating buttons */
+.foot a{transition:color .2s,transform .2s}.foot a:hover{color:#fff;text-decoration:none}
+.soc a{transition:background .25s,transform .3s cubic-bezier(.2,.8,.2,1)}.soc a:hover{background:var(--red);transform:translateY(-3px) scale(1.08)}
+.wafab,.upfab{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.wafab:hover{transform:scale(1.1) rotate(-6deg);box-shadow:0 14px 30px rgba(37,211,102,.5)}
+.upfab:hover{transform:translateY(-3px);border-color:var(--red);color:var(--acc)}
+
+/* section headings: a touch more air */
+section{padding:96px 0}
+.eyebrow{border:1px solid color-mix(in srgb,var(--red) 20%,transparent)}
+.sub{font-size:1.1rem}
+
+@media(max-width:700px){section{padding:64px 0}.hero2 h1{font-size:2.15rem}.gplay{width:100%;max-width:300px}.phone{animation:none}}
+@media(hover:none){.bc:hover,.plan:hover,.steps .step:hover,.bz:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.phone{animation:none!important}.btn::after{display:none}}
