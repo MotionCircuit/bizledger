@@ -1,0 +1,66 @@
+/* EDIT YOUR SOCIAL LINKS HERE (only place to change) */
+var SOCIAL={instagram:"https://instagram.com/YOUR_INSTAGRAM_HANDLE",youtube:"https://youtube.com/@YOUR_YOUTUBE_HANDLE"};
+document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("a[data-s]").forEach(function(a){var u=SOCIAL[a.getAttribute("data-s")];if(u)a.href=u})});
+window.tr=function(s){return s};
+(function(){
+var d=document,h=d.documentElement,top=d.querySelector(".top"),mn=d.getElementById("mn");
+function mk(t,c,html){var e=d.createElement(t);e.className=c;if(html)e.innerHTML=html;d.body.appendChild(e);return e}
+var bar=mk("div","pbar");
+var wa=mk("a","wafab",'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5.1A8.5 8.5 0 1 1 21 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.6-2-1-.8.7a4 4 0 0 1-1.9-1.9l.7-.8-1-2z"/></svg>');
+wa.href="https://wa.me/919053155257?text="+encodeURIComponent("Hello, I would like to know more about BizLedger.");
+wa.target="_blank";wa.rel="noopener";wa.setAttribute("aria-label","Chat on WhatsApp");
+var up=mk("button","upfab",'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>');
+up.setAttribute("aria-label","Back to top");
+up.onclick=function(){window.scrollTo({top:0,behavior:"smooth"})};
+var tick=false;
+function on(){var y=window.scrollY||h.scrollTop,m=h.scrollHeight-h.clientHeight;
+bar.style.transform="scaleX("+(m>0?y/m:0)+")";
+if(top)top.classList.toggle("sc",y>8);
+up.classList.toggle("show",y>500);tick=false}
+window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(on)}},{passive:true});on();
+if(mn){
+d.querySelectorAll(".nav a").forEach(function(a){a.addEventListener("click",function(){mn.checked=false})});
+d.addEventListener("keydown",function(e){if(e.key==="Escape")mn.checked=false});
+window.addEventListener("resize",function(){if(window.innerWidth>820)mn.checked=false});
+}
+})();
+
+/* dark mode toggle (remembers the choice; follows the phone setting until chosen) */
+(function(){var d=document,h=d.documentElement,bar=d.querySelector(".bar");
+try{var t=localStorage.getItem("bl_theme");if(t)h.setAttribute("data-theme",t);else if(matchMedia("(prefers-color-scheme:dark)").matches)h.setAttribute("data-theme","dark")}catch(e){}
+var b=d.createElement("button");b.type="button";b.className="thm";b.setAttribute("aria-label","Toggle dark mode");
+function ic(){b.textContent=h.getAttribute("data-theme")==="dark"?"☀":"☾"}ic();
+b.onclick=function(){var n=h.getAttribute("data-theme")==="dark"?"light":"dark";h.setAttribute("data-theme",n);try{localStorage.setItem("bl_theme",n)}catch(e){}ic()};
+if(bar)bar.insertBefore(b,d.querySelector(".mn-b"));
+if(!/contact/.test(location.pathname)){var m=d.createElement("a");m.className="mbar";m.href="contact.html";m.textContent="Get early access";d.body.appendChild(m);
+addEventListener("scroll",function(){m.classList.toggle("show",(window.scrollY||0)>420)},{passive:true})}
+})();
+
+/* page transition */
+(function(){var b=document.body;addEventListener("pageshow",function(){b.classList.remove("leaving")});
+if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");
+if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button||a.target==="_blank"||a.hasAttribute("download"))return;
+var u=new URL(a.href,location.href);if(u.origin!==location.origin||u.pathname===location.pathname||!/\.html$|\/$/.test(u.pathname))return;
+e.preventDefault();b.classList.add("leaving");setTimeout(function(){location.href=a.href},220)})})();
+
+/* pricing: tier x monthly/yearly. Plan ladder = app's recommended plans (Basic / Standard / Premium per tier). Yearly = 10 months' price. */
+(function(){var d=document,pl=d.getElementById("plans");if(!pl)return;
+var P={starter:[99,149,199],growth:[199,349,499],pro:[399,649,999]};
+var N={starter:"Starter: small solo and daily-delivery work. Live today: Milk / Dairy, Newspaper, Tiffin / Mess, Water can, Other.",
+growth:"Growth: shops and classes. Live today: Grocery / General Store and Gas cylinder.",
+pro:"Pro: GST and stock-heavy businesses. Live today: Medical / Pharmacy and Shuttering store."};
+var t="growth",b="m",fmt=function(n){return "₹"+n.toLocaleString("en-IN")};
+function draw(){d.getElementById("tnote").textContent=N[t];
+pl.querySelectorAll(".plan[data-i]").forEach(function(c){var m=P[t][+c.getAttribute("data-i")],y=m*10;
+c.querySelector(".price").innerHTML=b==="m"?fmt(m)+" <small>/ month</small>":fmt(y)+" <small>/ year</small>";
+c.querySelector(".yr").textContent=b==="m"?"or "+fmt(y)+" / year (2 months free)":"About "+fmt(Math.round(y/12))+" / month, 2 months free"})}
+d.querySelectorAll("#tier button").forEach(function(x){x.onclick=function(){t=x.getAttribute("data-t");d.querySelectorAll("#tier button").forEach(function(y){y.classList.toggle("on",y===x)});draw()}});
+d.querySelectorAll("#bill button").forEach(function(x){x.onclick=function(){b=x.getAttribute("data-b");d.querySelectorAll("#bill button").forEach(function(y){y.classList.toggle("on",y===x)});draw()}});
+draw()})();
+
+/* free plan <-> referral card flip (every 7 s, or click the dots) */
+(function(){var f=document.querySelector(".flip");if(!f)return;var dots=document.querySelectorAll(".dots i"),alt=false,tm;
+function set(a){alt=a;f.classList.toggle("alt",a);dots.forEach(function(x,i){x.classList.toggle("on",(i===1)===a)})}
+function auto(){clearInterval(tm);if(!matchMedia("(prefers-reduced-motion:reduce)").matches)tm=setInterval(function(){set(!alt)},7000)}
+dots.forEach(function(x,i){x.onclick=function(){set(i===1);auto()}});auto()})();
